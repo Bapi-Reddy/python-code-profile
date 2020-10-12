@@ -127,10 +127,11 @@ def print_csv(*names, file=sys.stdout):
         count = counts[name]
         avg = float(cumulative_time)/float(count)
         #if needed, could also do running median: https://stackoverflow.com/questions/10657503/find-running-median-from-a-stream-of-integers
-        median_value = "NA" #its not available
         if collect_raw:
-            median_value = median(name)
-       
+            median_value =statistics.median(raw_times[name])
+        else:
+            median_value = "NA" #its not available
+
         csv += f"{name}, {avg}, {max_time}, {min_time}, {count}, {median_value}\n"
 
     max_len = 0
